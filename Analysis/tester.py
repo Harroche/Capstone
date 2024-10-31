@@ -22,7 +22,7 @@ class HidePrint:
 
 
 
-def test_func()->bool:
+def test_build()->bool:
     '''Will randomly generate test cases and compare the provided solution with a proven solution'''
 
     with HidePrint():
@@ -57,25 +57,24 @@ def numerical(str1:str)->int:
     
 
 
-def goThoughTest(folder:str):
+def load_answers(folder:str):
     '''Will retrieve and process each student solution'''
     amountOfFiles= os.listdir(folder)
     amountOfFiles = sorted(amountOfFiles,key=(lambda str1: numerical(str1)))
     data = []
-    i =0
     for path in amountOfFiles:
-        write(folder+"\\"+path)
+        copy_to_test_file(folder+"\\"+path)
         id = numerical(path)
-        valid=test_func()
+        valid=test_build()
         with open('Analysis\\providedSolution.py','r') as file:
             code = file.read()
             cyc = cyclomatic(code)
         data.append({"type":"AI","number":id,"valid_answer":valid,"cyclomatic":cyc,"code":code})
-    csvWrite(data)
+    csv_write(data)
 
         
 
-def write(path:str):
+def copy_to_test_file(path:str):
     read = open(path,'r')
     write = open('Analysis\\providedSolution.py','w')
     for line in read:
@@ -83,7 +82,7 @@ def write(path:str):
     read.close()
     write.close()
 
-def csvWrite(data:list[dict]):
+def csv_write(data:list[dict]):
     header = ["type","number","valid_answer","cyclomatic","code"]
     contains="result.csv" in os.listdir("Analysis")
     with open("Analysis\\result.csv",'a',newline='') as csvFile:
@@ -97,7 +96,7 @@ def csvWrite(data:list[dict]):
 
 def main()->None:
     folder="LLM\\aiResponeses"
-    goThoughTest(folder)
+    load_answers(folder)
 
 if __name__=='__main__':
     main()
