@@ -1,6 +1,6 @@
-LLM/
+LLM/*
 !LLM/generator.py
-student_reposnes/
+student_reposnes/*
 !student_reposnes/processor.py
 Analysis/result.csv
 Analysis/providedSolution.py
