@@ -1,7 +1,7 @@
 import ast
 import pprint
 
-class CyclomaticCompleixty(ast.NodeVisitor):
+class CyclomaticComplexity(ast.NodeVisitor):
     
     def __init__(self):
         self.nodes = 0
@@ -46,7 +46,7 @@ class CyclomaticCompleixty(ast.NodeVisitor):
 def cyclomatic(source:str)->int:
     '''Takes in source code and outputs the Cyclomatic Complexity'''
     tree = ast.parse(source)
-    result = CyclomaticCompleixty()
+    result = CyclomaticComplexity()
     result.visit(tree)
     return result.cyc
 
