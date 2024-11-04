@@ -55,9 +55,8 @@ def generate(PROMPT:str,token:int,output:int)->None:
                     if('```' in line):
                         break
                     file.write(line+"\n")
-                else:
-                    if('```python' in line):
-                        printPy=True
+                elif('```python' in line):
+                    printPy=True
 
 
 def main()->None:
