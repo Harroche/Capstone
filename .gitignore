@@ -7,4 +7,4 @@ Analysis/providedSolution.py
 Analysis/__pycache__/
 .vscode
 githubAPI/*
-!githubAPI/generator.py
+!githubAPI/query.py
